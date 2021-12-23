@@ -1,8 +1,3 @@
-/**
-Program measuring temperature, relative humidity, and atmospheric pressure
-  with a BME280.
-*/
-
 import net
 import mqtt
 import gpio
@@ -10,7 +5,7 @@ import i2c
 import bme280
 import encoding.json
 
-CLIENT_ID ::= "toit-client"
+CLIENT_ID ::= "toit-node"
 HOST      ::= "192.168.80.74"
 PORT      ::= 1883
 TOPIC     ::= "test"
@@ -25,15 +20,12 @@ main:
   driver := bme280.Driver device
 
   socket := net.open.tcp_connect HOST PORT
-  // Connect the Toit MQTT client to the broker
+
   client := mqtt.Client
     CLIENT_ID
     mqtt.TcpTransport socket
 
-  // The client is now connected.
-  print "Connected to MQTT Broker @ $HOST:$PORT"
-  // Start publishing on a topic.
-  
+  print "Setup complete. Connected to MQTT Broker @ $HOST:$PORT"
 
   while true:
     print "Temperature: $driver.read_temperature C"
@@ -44,9 +36,7 @@ main:
 
     sleep --ms=10000
 
-
 publish client/mqtt.Client payload1/float payload2/float payload3/float:
-  // Publish message to topic
   client.publish
     TOPIC 
     json.encode {
