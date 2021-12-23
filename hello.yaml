@@ -1,7 +1,0 @@
-# Save as hello.yaml
-name: "HelloApp"
-entrypoint: hello.toit
-triggers:
-  on_boot: true
-  on_install: true
-

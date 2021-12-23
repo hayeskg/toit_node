@@ -52,6 +52,7 @@ publish client/mqtt.Client payload1/float payload2/float payload3/float:
     json.encode {
       "Temperature (C)": payload1,
       "Humidity (%)": payload2,
-      "Pressure (Pa)": payload3
+      "Pressure (Pa)": payload3,
+      "Timestamp": Time.now.local.to_iso8601_string
     }
   print "Published message new sensor reading on '$TOPIC', speeling for 10s"  
