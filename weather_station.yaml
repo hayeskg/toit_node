@@ -1,0 +1,5 @@
+name: "weather station"
+entrypoint: weather_station.toit
+triggers:
+  on_boot: true
+  on_install: true
